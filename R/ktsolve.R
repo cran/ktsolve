@@ -1,4 +1,5 @@
 ktsolve <- function(yfunc, known=list(), guess, tool=c('BB', 'nleqslv'), show=TRUE, ...){
+#revised 23 Sept 2013 to fix search/replace strings in gsub
 # length(body(y)) is one greater than number of lines due to"{}"
 if( !(is(yfunc,'function')) ) stop('yfunc type must be "function" ')
 # if lengths are equal, we should be OK.
@@ -22,14 +23,17 @@ switch(tool,
 if (length(known)>0 ) {
 	for (i in 1:length(known)) {
 		if(length(grep(names(known)[i], body(yfunc)[-1])) < 1) warning("Input '", names(known)[i], '" not found in function body')
-		body(yfunc)[-1] <- parse(text=gsub(names(known)[i], known[i], body(yfunc)[-1], fixed=TRUE) ) 
+		lookfor<-paste("\\b",names(known)[i],"\\b",sep="",collapse="")
+		parse(text=gsub(lookfor,known[i],body(yfunc)[-1])) -> body(yfunc)[-1]
+
 		}
 	}
 # Replace each "guess" name with x[n] in yfunc's body 
 for (i in 1:length(guess)) {
 	if(length(grep(names(guess)[i], body(yfunc)[-1]))<1) warning("Guess '", names(guess)[i],"' not found in function body")
 	subpat <- paste('x[', i, ']', sep='')
-	parse(text=gsub(names(guess)[i], subpat, body(yfunc)[-1], fixed=TRUE) ) -> body(yfunc)[-1]
+	lookfive<-paste("\\b",names(guess)[i],"\\b",sep="",collapse="")
+	parse(text=gsub(lookfive, subpat, body(yfunc)[-1])) -> body(yfunc)[-1]
 	}
 # call solver tool with the values in 'guess' 
 toolset <- cbind(c('BB','nleqslv'),c('BBsolve','nleqslv'))

@@ -12,7 +12,7 @@ The original version of "TK!Solver" was the inspiration for this function.
 \tabular{ll}{
 Package: \tab ktsolve\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 1.1\cr
 Date: \tab 2013-08-29\cr
 License: \tab GPL-3\cr
 }
