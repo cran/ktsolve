@@ -1,4 +1,5 @@
 ktsolve <- function(yfunc, known=list(), guess, tool=c('BB', 'nleqslv'), show=TRUE, ...){
+#revised Dec 2017 to use requireNamespace instead of require, per R CMD CHECK advice
 #revised 23 Sept 2013 to fix search/replace strings in gsub
 # length(body(y)) is one greater than number of lines due to"{}"
 if( !(is(yfunc,'function')) ) stop('yfunc type must be "function" ')
@@ -14,11 +15,16 @@ if( length( intersect(names(known), names(guess)) ) ) {
 	}
 # pick the solver - used switch() so easy to add more options
  tool<-tool[1] #get rid of the extras!
-switch(tool,
-	'BB' = 	require(BB, quietly=TRUE, warn.conflicts=FALSE ),
-	'nleqslv' = require(nleqslv, quietly=TRUE, warn.conflicts=FALSE ),
+ # cran check says replace require() with requireNamespace() . Have to look up arguments.
+# NOW checker says these reqNS are not needed.  Those CRAN guys are screwed up. 
+ switch(tool,
+	'BB' = requireNamespace('BB',quietly=TRUE), #require(BB, quietly=TRUE, warn.conflicts=FALSE ),
+	'nleqslv' = requireNamespace('nleqslv',quietly=TRUE), #require(nleqslv, quietly=TRUE, warn.conflicts=FALSE ),
 	stop('Unknown solver package specified.') 
 	)
+if ( tool != 'BB'  & tool != 'nleqslv') {
+	stop('Unknown solver package specified.')
+	}
 # 	# replace variable name with value of variable,i.e. "known" in function body, if any
 if (length(known)>0 ) {
 	for (i in 1:length(known)) {

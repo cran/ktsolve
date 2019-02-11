@@ -1,1 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+importFrom("methods", "is")
+importFrom("BB", "BBsolve")
+importFrom("nleqslv", "nleqslv")
+
