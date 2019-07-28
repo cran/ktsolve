@@ -1,2 +1,3 @@
+* rev 1.2 : added ability to call \code{rootSolve::multiroot}
 * rev 1.1.1 : updated DESCRIPTION and NAMESPACE files to match current CRAN protocol
 *ktsolve.R(ktsolve): rev. 1.1 - modified the regex expressions to ensure proper substitution of named variables

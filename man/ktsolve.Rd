@@ -1,15 +1,17 @@
 \name{ktsolve}
 \alias{ktsolve}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Configurable function for solving families of nonlinear equations
-Version: 1.0
+\title{Configurable Function for Solving Families of Nonlinear Equations
+Version: 1.2
 %%  ~~function to do ... ~~
 }
 \description{This function is designed for use with an arbitrary set of equations with an arbitrary set of unknowns.  The user selects "fixed" values for enough unknowns to leave as many variables as there are equations, which in most cases means the system is properly defined and a unique solution exists. The function, the fixed values, and initial values for the remaining unknowns are fed to a nonlinear backsolver.  
+As of version 1.1, supports \code{rootSolver::multiroot} as well as \code{BB} and \code{nleqslv}
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-ktsolve(yfunc, known = list(), guess, tool = c("BB", "nleqslv"), show = TRUE, ...)
+ktsolve(yfunc, known = list(), guess, 
+tool = c("BB", "nleqslv","rootSolve"), show = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,7 +26,7 @@ A list  of known values.  The elements must be named and the names must match va
 %%     ~~Describe \code{guess} here~~
 A list or vector of initial guesses for the unknown values.  The elements must be named and the names must match variable names in yfunc. AND length(guess)  must be same as the number  of y[j] equations in yfunc, to avoid having an over- or under-defined system.  
 }
-  \item{tool}{ name of package which holds the solver to be used. Currently only \code{BB} and \code{nleqslv} are supported.  
+  \item{tool}{ name of package which holds the solver to be used. Currently only \code{BB::BBsolve}, \code{rootSolver::multiroot} and \code{nleqslv::nleqslv} are supported.  
 %%     ~~Describe \code{tool} here~~
 }
   \item{show}{ if TRUE, the solution values are printed in brief form to the console.
@@ -38,7 +40,7 @@ A list or vector of initial guesses for the unknown values.  The elements must b
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 %%  maybe \preformatted{}  is what's wanted.
-For both \code{BB} and \code{nleqslv}, \code{yfunc}  is a function of the form:
+The input form of  \code{yfunc}  is a function of the form:
 \preformatted{ yfunc<-function(x) {
 y<-vector()
 y[1]<-f1(known,guess)
@@ -84,11 +86,11 @@ y[n]<-fn(known,guess)
 %%  ~~who you are~~
 }
 \note{
-The original version of TK!Solver  provided a very nice GUI-based version of what I've done in \code{ktsolver}.  Over the years, it's turned into a very large, powerful, and,sadly, expensive application. You can find it at \url{http://www.uts.com/ItemDetails.asp?ItemID=0100-50-0010-00}
+The original version of TK!Solver  provided a very nice GUI-based version of what I've done in \code{ktsolver}.  Over the years, it's turned into a very large, powerful, and,sadly, expensive application. You can find it at \url{https://www.uts.com/Products/Tksolver}
 %%  ~~further notes~~
 }
 \seealso{ 
- \code{\link[BB]{BBsolve}} , \code{\link[nleqslv]{nleqslv}}  
+ \code{\link[BB]{BBsolve}} , \code{\link[nleqslv]{nleqslv}} ,\code{\link[rootSolve]{multiroot}} 
 }
 \examples{
 % Make SURE those are valid solutions 

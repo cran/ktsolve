@@ -1,6 +1,6 @@
-4f39c028f998d97ca21b93211b47e119 *ChangeLog
-988da768664faa6617de3eae1546806f *DESCRIPTION
+d602b06a95864fb24bbfed8394a4b329 *ChangeLog
+ea56c5e67cf4e0cdda6bfb2539da3b57 *DESCRIPTION
 505f4779b1106f19e33e34a56c6c3787 *NAMESPACE
-69488cb0f532f1366299b53fdf26c4d1 *R/ktsolve.R
-723c3fe3d5865e1989a3cbebf15461fe *man/ktsolve-package.Rd
-c7298ae839ca52e8856f9ef8f57f22bb *man/ktsolve.Rd
+3ce444e6212913cc96da9bf88de9cc3b *R/ktsolve.R
+dc6f050a0a992aeaccb231142a29fb58 *man/ktsolve-package.Rd
+a3faf7f81f437e9617339f9092149358 *man/ktsolve.Rd

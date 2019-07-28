@@ -2,8 +2,8 @@ Package: ktsolve
 Type: Package
 Title: Configurable Function for Solving Families of Nonlinear
         Equations
-Version: 1.1.1
-Date: 2019-02-10
+Version: 1.2
+Date: 2019-07-08
 Author: Carl Witthoft
 Maintainer: Carl Witthoft <carl@witthoft.com>
 Description: This is designed for use with an arbitrary set of equations with
@@ -14,8 +14,8 @@ Description: This is designed for use with an arbitrary set of equations with
  and initial values for the remaining unknowns are fed to a nonlinear backsolver.  
  The original version of "TK!Solver" , now a product of Universal Technical Systems (<https://www.uts.com>) was the inspiration for this function.
 License: LGPL-3
-Imports: methods, BB, nleqslv
+Imports: methods, BB, nleqslv, rootSolve
 NeedsCompilation: no
-Packaged: 2019-02-11 21:29:04 UTC; cgw
+Packaged: 2019-07-28 19:22:54 UTC; cgw
 Repository: CRAN
-Date/Publication: 2019-02-12 00:03:20 UTC
+Date/Publication: 2019-07-28 19:40:02 UTC
