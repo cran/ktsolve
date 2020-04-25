@@ -12,11 +12,11 @@ The original version of "TK!Solver" was the inspiration for this function.
 \tabular{ll}{
 Package: \tab ktsolve\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2019-07-08\cr
+Version: \tab 1.3\cr
+Date: \tab 2020-04-25\cr
 License: \tab GPL-3\cr
 }
-Note: \code{ktsolve} requires at least one of the "Suggests" packages (currently \code{BB},\code{rootSolve} and \code{nleqslv} ) to execute nonlinear back-solvers.
+Note: \code{ktsolve} requires at least one of the "Suggests" packages (currently \code{BB} and \code{nleqslv} ) to execute nonlinear back-solvers.
 }
 \author{
 Carl Witthoft

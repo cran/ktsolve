@@ -1,4 +1,5 @@
-ktsolve <- function(yfunc, known=list(), guess, tool=c('BB', 'nleqslv','rootSolve'), show=TRUE, ...) {
+ktsolve <- function(yfunc, known=list(), guess, tool=c('BB', 'nleqslv'), show=TRUE, ...) {
+#REvised April 2020 because rootSolve is being pulled off CRAN
 # Revised June 2019 to add rootSolve::multiroot option for "tool" 
 #revised Dec 2017 to use requireNamespace instead of require, per R CMD CHECK advice
 #revised 23 Sept 2013 to fix search/replace strings in gsub
@@ -25,15 +26,16 @@ switch(tool,
 	'nleqslv' = {
 		requireNamespace('nleqslv',quietly=TRUE)
 		thesolver = nleqslv::nleqslv}  , 
-	'rootSolve' = {
-		requireNamespace('rootSolve',quietly=TRUE)
-		thesolver <- rootSolve::multiroot
-		} ,
-	'multiroot' = {
-			requireNamespace('rootSolve',quietly=TRUE)
-			tool = 'rootSolve'
-			thesolver <- rootSolve::multiroot
-		}  ,
+# April 2020 - rootSolve package is pulled off CRAN. Re-enable manually if you have a local copy 
+	# 'rootSolve' = {
+		# requireNamespace('rootSolve',quietly=TRUE)
+		# thesolver <- rootSolve::multiroot
+		# } ,
+	# 'multiroot' = {
+			# requireNamespace('rootSolve',quietly=TRUE)
+			# tool = 'rootSolve'
+			# thesolver <- rootSolve::multiroot
+		# }  ,
 	stop('Unknown solver package specified.') 
 	)
 
@@ -81,23 +83,23 @@ switch (tool,
 			print(solution$x)
 			}
 		},
-	'rootSolve' ={
-# first convert yfunc into rootSolve format
-		jfunc <- function(x) {
-			z <- c()
-		}
-		qlen = length(body(yfunc))
-		for (jeq in 3:(qlen-1)) {
-			ptmp = parse(text = body(yfunc)[jeq])
-			ztmp  = parse(text = ptmp[[1]][3])
-			body(jfunc)[[2]][[3]][jeq-1] = as.call(ztmp)
-		}
-		do.call(thesolver, list(jfunc, unlist(guess),  ...) ) -> solution
-		if(show) {
-			cat('solution is:\n')
-			print(solution$root)
-			}
-		} ,
+	# 'rootSolve' ={
+# # first convert yfunc into rootSolve format
+		# jfunc <- function(x) {
+			# z <- c()
+		# }
+		# qlen = length(body(yfunc))
+		# for (jeq in 3:(qlen-1)) {
+			# ptmp = parse(text = body(yfunc)[jeq])
+			# ztmp  = parse(text = ptmp[[1]][3])
+			# body(jfunc)[[2]][[3]][jeq-1] = as.call(ztmp)
+		# }
+		# do.call(thesolver, list(jfunc, unlist(guess),  ...) ) -> solution
+		# if(show) {
+			# cat('solution is:\n')
+			# print(solution$root)
+			# }
+		# } ,
 ) #end of switch
 if(show && length(known) > 0 ) {
 	cat('"known" inputs were:\n')

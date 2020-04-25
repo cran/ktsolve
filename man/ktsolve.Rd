@@ -2,16 +2,16 @@
 \alias{ktsolve}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Configurable Function for Solving Families of Nonlinear Equations
-Version: 1.2
+Version: 1.3
 %%  ~~function to do ... ~~
 }
 \description{This function is designed for use with an arbitrary set of equations with an arbitrary set of unknowns.  The user selects "fixed" values for enough unknowns to leave as many variables as there are equations, which in most cases means the system is properly defined and a unique solution exists. The function, the fixed values, and initial values for the remaining unknowns are fed to a nonlinear backsolver.  
-As of version 1.1, supports \code{rootSolver::multiroot} as well as \code{BB} and \code{nleqslv}
+As of version 1.3, supports  \code{BB} and \code{nleqslv}
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 ktsolve(yfunc, known = list(), guess, 
-tool = c("BB", "nleqslv","rootSolve"), show = TRUE, ...)
+tool = c("BB", "nleqslv"), show = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,7 +26,7 @@ A list  of known values.  The elements must be named and the names must match va
 %%     ~~Describe \code{guess} here~~
 A list or vector of initial guesses for the unknown values.  The elements must be named and the names must match variable names in yfunc. AND length(guess)  must be same as the number  of y[j] equations in yfunc, to avoid having an over- or under-defined system.  
 }
-  \item{tool}{ name of package which holds the solver to be used. Currently only \code{BB::BBsolve}, \code{rootSolver::multiroot} and \code{nleqslv::nleqslv} are supported.  
+  \item{tool}{ name of package which holds the solver to be used. Currently only \code{BB::BBsolve}and \code{nleqslv::nleqslv} are supported.  
 %%     ~~Describe \code{tool} here~~
 }
   \item{show}{ if TRUE, the solution values are printed in brief form to the console.
@@ -90,7 +90,7 @@ The original version of TK!Solver  provided a very nice GUI-based version of wha
 %%  ~~further notes~~
 }
 \seealso{ 
- \code{\link[BB]{BBsolve}} , \code{\link[nleqslv]{nleqslv}} ,\code{\link[rootSolve]{multiroot}} 
+ \code{\link[BB]{BBsolve}} , \code{\link[nleqslv]{nleqslv}}  
 }
 \examples{
 % Make SURE those are valid solutions 
