@@ -1,3 +1,4 @@
+* rev 1.4 : rootSolve was resurrected.  Fixed possible bug in code. 
 * rev 1.3: removed rootSolve because CRAN is retiring it
 * rev 1.2 : added ability to call \code{rootSolve::multiroot}
 * rev 1.1.1 : updated DESCRIPTION and NAMESPACE files to match current CRAN protocol

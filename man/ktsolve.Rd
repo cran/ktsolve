@@ -2,7 +2,7 @@
 \alias{ktsolve}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Configurable Function for Solving Families of Nonlinear Equations
-Version: 1.3
+Version: 1.4
 %%  ~~function to do ... ~~
 }
 \description{This function is designed for use with an arbitrary set of equations with an arbitrary set of unknowns.  The user selects "fixed" values for enough unknowns to leave as many variables as there are equations, which in most cases means the system is properly defined and a unique solution exists. The function, the fixed values, and initial values for the remaining unknowns are fed to a nonlinear backsolver.  
@@ -11,7 +11,7 @@ As of version 1.3, supports  \code{BB} and \code{nleqslv}
 }
 \usage{
 ktsolve(yfunc, known = list(), guess, 
-tool = c("BB", "nleqslv"), show = TRUE, ...)
+tool = c("BBsolve", "nleqslv","multiroot"), show = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,7 +26,7 @@ A list  of known values.  The elements must be named and the names must match va
 %%     ~~Describe \code{guess} here~~
 A list or vector of initial guesses for the unknown values.  The elements must be named and the names must match variable names in yfunc. AND length(guess)  must be same as the number  of y[j] equations in yfunc, to avoid having an over- or under-defined system.  
 }
-  \item{tool}{ name of package which holds the solver to be used. Currently only \code{BB::BBsolve}and \code{nleqslv::nleqslv} are supported.  
+  \item{tool}{ name of package which holds the solver to be used. Currently only \code{BB::BBsolve}, \code{nleqslv::nleqslv}, and \code{rootSolve::multiroot} are supported.  
 %%     ~~Describe \code{tool} here~~
 }
   \item{show}{ if TRUE, the solution values are printed in brief form to the console.
